@@ -22,45 +22,54 @@ namespace MechTools.ViewModels
         [RelayCommand]
         void Calculate()
         {
-            // 1. Pulizia: Se non ha scritto nulla, avvisiamo.
+            // Pulizia base
             if (string.IsNullOrWhiteSpace(InputText))
             {
-                ResultText = "Inserisci una vite (es. M8) o una chiave (es. 13)";
+                ResultText = "Scrivi un numero (es. 13) o una vite (es. M8)";
                 return;
             }
 
-            string input = InputText.Trim(); // Rimuove spazi vuoti accidentali
+            string input = InputText.Trim().ToUpper(); // Rimuove spazi e mette maiuscolo
 
-            // 2. Proviamo a cercare come VITE (es. "M8")
-            // Se l'utente scrive solo "8", noi aggiungiamo "M" per aiutarlo
-            string searchAsBolt = input.StartsWith("M", StringComparison.CurrentCultureIgnoreCase) ? input : "M" + input;
+            // --- LOGICA AGGIORNATA ---
+
+            // 1. PRIMA controlliamo se è un NUMERO PURO (Cerca Chiave)
+            // Se scrivi "13", il programma capisce che cerchi la chiave, non la vite M13.
+            if (int.TryParse(input, out int wrenchSize))
+            {
+                var boltFromWrench = BoltService.GetBoltByHexWrench(wrenchSize);
+
+                if (boltFromWrench != null)
+                {
+                    ResultText = $"La chiave {wrenchSize} mm serve per:\n" +
+                                 $"✅ Vite Standard: {boltFromWrench.ThreadSize} (Passo {boltFromWrench.Pitch})";
+                    return; // Trovato! Usciamo.
+                }
+            }
+
+            // 2. POI controlliamo se è una VITE
+            // Se siamo arrivati qui, o non è un numero, oppure è un numero che non corrisponde a nessuna chiave.
+            // Aggiungiamo "M" se l'utente se l'è dimenticata.
+            string searchAsBolt = input.StartsWith("M") ? input : "M" + input;
 
             var boltInfo = BoltService.GetBoltInfo(searchAsBolt);
 
             if (boltInfo != null)
             {
-                // Trovato come vite!
-                ResultText = $"Vite {boltInfo.ThreadSize}:\n" +
-                             $"🔧 Chiave Fissa: {boltInfo.HexWrenchSize} mm\n" +
-                             $"🔩 Brugola: {boltInfo.AllenWrenchSize} mm";
+                string result = $"Vite {boltInfo.ThreadSize} (Passo {boltInfo.Pitch}):\n" +
+                                $"🔧 Chiave Fissa: {boltInfo.HexWrenchSize} mm";
+
+                if (boltInfo.AllenWrenchSize > 0)
+                {
+                    result += $"\n🔩 Brugola: {boltInfo.AllenWrenchSize} mm";
+                }
+
+                ResultText = result;
                 return;
             }
 
-            // 3. Se non è una vite, proviamo a cercare come CHIAVE (es. "13")
-            if (int.TryParse(input, out int wrenchSize))
-            {
-                var boltFromWrench = BoltService.GetBoltByHexWrench(wrenchSize);
-                if (boltFromWrench != null)
-                {
-                    // Trovato come chiave!
-                    ResultText = $"La chiave {wrenchSize} mm serve per:\n" +
-                                 $"Vite Standard: {boltFromWrench.ThreadSize}";
-                    return;
-                }
-            }
-
-            // 4. Nessun risultato
-            ResultText = "Nessuna corrispondenza trovata.";
+            // 3. Nessun risultato
+            ResultText = "Nessuna corrispondenza trovata.\nProva 'M8' o '13'";
         }
 
         [RelayCommand]
