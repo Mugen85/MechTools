@@ -1,10 +1,68 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MechTools.MainPage">
+             xmlns:viewModels="clr-namespace:MechTools.ViewModels"
+             x:Class="MechTools.MainPage"
+             Title="MechTools - Officina">
+
+    <ContentPage.BindingContext>
+        <viewModels:BoltViewModel />
+    </ContentPage.BindingContext>
 
     <ScrollView>
-       
+        <VerticalStackLayout Spacing="25" 
+                             Padding="30" 
+                             VerticalOptions="Center">
+
+            <Label Text="Trova Chiave 🔧"
+                   FontSize="32"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+
+            <Label Text="Inserisci vite (es. M8) o chiave (es. 13)"
+                   FontSize="14"
+                   TextColor="Gray"
+                   HorizontalOptions="Center" />
+
+            <Entry Text="{Binding InputText}"
+                   Placeholder="Scrivi qui..."
+                   PlaceholderColor="Gray"
+                   FontSize="24"
+                   HorizontalTextAlignment="Center"
+                   Keyboard="Text"
+                   ReturnCommand="{Binding CalculateCommand}" />
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="15">
+
+                <Button Grid.Column="0"
+                        Text="RESET"
+                        Command="{Binding ClearCommand}"
+                        BackgroundColor="#333333"
+                        TextColor="White"
+                        HeightRequest="60" />
+
+                <Button Grid.Column="1"
+                        Text="CERCA"
+                        Command="{Binding CalculateCommand}"
+                        BackgroundColor="#007ACC" 
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        HeightRequest="60" />
+            </Grid>
+
+            <Frame BorderColor="Gray"
+                   BackgroundColor="#1E1E1E"
+                   CornerRadius="10"
+                   Padding="20"
+                   HasShadow="True">
+
+                <Label Text="{Binding ResultText}"
+                       FontSize="22"
+                       HorizontalTextAlignment="Center"
+                       TextColor="White" />
+            </Frame>
+
+        </VerticalStackLayout>
     </ScrollView>
 
 </ContentPage>
