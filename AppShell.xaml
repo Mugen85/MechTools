@@ -4,11 +4,26 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MechTools"
-    Title="MechTools">
+    xmlns:views="clr-namespace:MechTools.Views"
+    Title="MechTools"
+    BackgroundColor="#1E1E1E"
+    ForegroundColor="White"
+    TitleColor="White"    
+    Shell.TabBarBackgroundColor="#1E1E1E"
+    Shell.TabBarTitleColor="#FF9900"
+    Shell.TabBarUnselectedColor="#999999">
+    
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <TabBar>
+
+        <Tab Title="Chiavi" Icon="appicon.png">
+            <ShellContent ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage" />
+        </Tab>
+
+        <Tab Title="Raccordi" Icon="appicon.png">
+            <ShellContent ContentTemplate="{DataTemplate views:FittingsPage}" Route="FittingsPage" />
+        </Tab>
+
+    </TabBar>
 
 </Shell>

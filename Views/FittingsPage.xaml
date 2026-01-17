@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:MechTools.ViewModels"
+             xmlns:models="clr-namespace:MechTools.Models"
+             x:Class="MechTools.Views.FittingsPage"
+             Title="Raccordi Idraulici 💧"
+             BackgroundColor="#121212">
+
+    <Grid RowDefinitions="Auto, Auto, *" RowSpacing="15" Padding="15">
+
+        <Border Grid.Row="0" 
+                Stroke="#333333" 
+                StrokeThickness="1" 
+                BackgroundColor="#1E1E1E" 
+                Padding="15">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="10"/>
+            </Border.StrokeShape>
+
+            <VerticalStackLayout Spacing="10">
+                <Label Text="IDENTIFICA RACCORDO 📏" 
+                       TextColor="#FF9900" FontAttributes="Bold" FontSize="12"/>
+
+                <Label Text="Inserisci i diametri misurati (mm):" 
+                       TextColor="Gray" FontSize="12"/>
+
+                <Grid ColumnDefinitions="*,*,Auto" ColumnSpacing="10">
+                    <Entry Grid.Column="0" 
+                           Placeholder="Punta" 
+                           Text="{Binding DiameterTip}"
+                           Keyboard="Numeric"
+                           TextColor="White" PlaceholderColor="#666666"
+                           BackgroundColor="#2D2D2D"/>
+
+                    <Entry Grid.Column="1" 
+                           Placeholder="Fondo" 
+                           Text="{Binding DiameterBottom}"
+                           Keyboard="Numeric"
+                           TextColor="White" PlaceholderColor="#666666"
+                           BackgroundColor="#2D2D2D"/>
+
+                    <Button Grid.Column="2" 
+                            Text="🔍" 
+                            Command="{Binding AnalyzeCommand}"
+                            BackgroundColor="#FF9900" TextColor="Black" FontAttributes="Bold"/>
+                </Grid>
+
+                <Label Text="{Binding DetectorResult}" 
+                       TextColor="White" 
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       FontSize="16"/>
+            </VerticalStackLayout>
+        </Border>
+
+        <Grid Grid.Row="1" ColumnDefinitions="*,*" ColumnSpacing="10">
+            <Button Grid.Column="0" 
+                    Text="GAS (BSP)" 
+                    Command="{Binding LoadGasCommand}"
+                    BackgroundColor="#007ACC" 
+                    TextColor="White" HeightRequest="50"/>
+
+            <Button Grid.Column="1" 
+                    Text="NPT (USA)" 
+                    Command="{Binding LoadNptCommand}"
+                    BackgroundColor="#D32F2F" 
+                    TextColor="White" HeightRequest="50"/>
+        </Grid>
+
+        <CollectionView Grid.Row="2" ItemsSource="{Binding FittingsList}">
+
+            <CollectionView.Header>
+                <Label Text="{Binding CurrentStandardName}" 
+                       TextColor="Gray" FontSize="12" 
+                       Margin="0,0,0,10" HorizontalOptions="Center"/>
+            </CollectionView.Header>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Fitting">
+                    <Border StrokeThickness="0" 
+                            BackgroundColor="#1E1E1E" 
+                            Margin="0,5" 
+                            Padding="15">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="8"/>
+                        </Border.StrokeShape>
+
+                        <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto">
+                            <Label Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
+                                   Text="{Binding Name}" 
+                                   FontSize="24" FontAttributes="Bold" TextColor="#FF9900"
+                                   VerticalOptions="Center" Margin="0,0,15,0"/>
+
+                            <Label Grid.Row="0" Grid.Column="1" 
+                                   Text="{Binding Type}" 
+                                   FontSize="12" TextColor="Gray" HorizontalOptions="End"/>
+
+                            <HorizontalStackLayout Grid.Row="1" Grid.Column="1" Spacing="10" HorizontalOptions="End">
+                                <Label Text="{Binding OuterDiameterMm, StringFormat='Ø {0} mm'}" 
+                                       TextColor="White" FontAttributes="Bold"/>
+                                <Label Text="|" TextColor="Gray"/>
+                                <Label Text="{Binding TPI, StringFormat='{0} TPI'}" 
+                                       TextColor="#AAAAAA"/>
+                            </HorizontalStackLayout>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
+</ContentPage>
