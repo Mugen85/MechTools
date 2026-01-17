@@ -50,7 +50,7 @@ namespace MechTools.ViewModels
             // 2. POI controlliamo se è una VITE
             // Se siamo arrivati qui, o non è un numero, oppure è un numero che non corrisponde a nessuna chiave.
             // Aggiungiamo "M" se l'utente se l'è dimenticata.
-            string searchAsBolt = input.StartsWith("M") ? input : "M" + input;
+            string searchAsBolt = input.StartsWith('M') ? input : "M" + input;
 
             var boltInfo = BoltService.GetBoltInfo(searchAsBolt);
 
