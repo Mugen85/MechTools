@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:MechTools.Models"
+             x:Class="MechTools.Views.ConvertersPage"
+             Title="Convertitore 📐"
+             BackgroundColor="#121212">
+
+    <Grid RowDefinitions="Auto, Auto, *" RowSpacing="20" Padding="20">
+
+        <Label Grid.Row="0" 
+               Text="POLLICI ➜ MM" 
+               TextColor="White" FontSize="24" FontAttributes="Bold" 
+               HorizontalOptions="Center"/>
+
+        <Border Grid.Row="1" Stroke="#333" BackgroundColor="#1E1E1E" Padding="15">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="10"/>
+            </Border.StrokeShape>
+
+            <VerticalStackLayout Spacing="15">
+                <Label Text="Inserisci pollici (es. 3/8 o 0.375):" TextColor="Gray"/>
+
+                <Grid ColumnDefinitions="*, Auto" ColumnSpacing="10">
+                    <Entry Grid.Column="0"
+                           Placeholder="Es. 1/2"
+                           Text="{Binding InputValue}"
+                           TextColor="White" PlaceholderColor="#666" BackgroundColor="#2D2D2D"
+                           Keyboard="Text"/>
+                    <Button Grid.Column="1"
+                            Text="CALCOLA"
+                            Command="{Binding ConvertCommand}"
+                            BackgroundColor="#FF9900" TextColor="Black" FontAttributes="Bold"/>
+                </Grid>
+
+                <Label Text="{Binding ResultText}" 
+                       TextColor="#FF9900" FontSize="20" FontAttributes="Bold" 
+                       HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+        </Border>
+
+        <CollectionView Grid.Row="2" ItemsSource="{Binding QuickList}">
+            <CollectionView.Header>
+                <Label Text="Tabella Riferimento Standard" TextColor="Gray" Margin="0,0,0,10"/>
+            </CollectionView.Header>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:ConversionItem">
+                    <Border StrokeThickness="0" BackgroundColor="#1E1E1E" Margin="0,5" Padding="15">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="5"/>
+                        </Border.StrokeShape>
+                        <Grid ColumnDefinitions="Auto, *, Auto">
+                            <Label Grid.Column="0" Text="{Binding Fraction}" TextColor="#FF9900" FontAttributes="Bold" WidthRequest="50"/>
+                            <Label Grid.Column="1" Text="{Binding DecimalInch, StringFormat='({0:F3})'}" TextColor="Gray"/>
+                            <Label Grid.Column="2" Text="{Binding Mm, StringFormat='{0:F2} mm'}" TextColor="White" FontAttributes="Bold"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
+</ContentPage>

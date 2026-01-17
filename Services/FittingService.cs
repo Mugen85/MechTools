@@ -14,6 +14,11 @@ namespace MechTools.Services
             new Fitting { Name = "1/2\"", Type = FittingStandard.GasBSP, OuterDiameterMm = 20.95, TPI = 14 },
             new Fitting { Name = "3/4\"", Type = FittingStandard.GasBSP, OuterDiameterMm = 26.44, TPI = 14 },
             new Fitting { Name = "1\"",   Type = FittingStandard.GasBSP, OuterDiameterMm = 33.25, TPI = 11 },
+            
+            // AGGIUNTE FINO A 2 POLLICI
+            new Fitting { Name = "1\" 1/4", Type = FittingStandard.GasBSP, OuterDiameterMm = 41.91, TPI = 11 },
+            new Fitting { Name = "1\" 1/2", Type = FittingStandard.GasBSP, OuterDiameterMm = 47.80, TPI = 11 },
+            new Fitting { Name = "2\"",     Type = FittingStandard.GasBSP, OuterDiameterMm = 59.61, TPI = 11 },
 
             // --- NPT (National Pipe Taper) - Conici ---
             new Fitting { Name = "1/8\"", Type = FittingStandard.NPT, OuterDiameterMm = 10.29, TPI = 27 },
@@ -21,7 +26,12 @@ namespace MechTools.Services
             new Fitting { Name = "3/8\"", Type = FittingStandard.NPT, OuterDiameterMm = 17.15, TPI = 18 },
             new Fitting { Name = "1/2\"", Type = FittingStandard.NPT, OuterDiameterMm = 21.34, TPI = 14 },
             new Fitting { Name = "3/4\"", Type = FittingStandard.NPT, OuterDiameterMm = 26.67, TPI = 14 },
-            new Fitting { Name = "1\"",   Type = FittingStandard.NPT, OuterDiameterMm = 33.40, TPI = 11.5 } // Nota il mezzo filetto!
+            new Fitting { Name = "1\"",   Type = FittingStandard.NPT, OuterDiameterMm = 33.40, TPI = 11.5 },
+
+            // AGGIUNTE FINO A 2 POLLICI
+            new Fitting { Name = "1\" 1/4", Type = FittingStandard.NPT, OuterDiameterMm = 42.16, TPI = 11.5 },
+            new Fitting { Name = "1\" 1/2", Type = FittingStandard.NPT, OuterDiameterMm = 48.26, TPI = 11.5 },
+            new Fitting { Name = "2\"",     Type = FittingStandard.NPT, OuterDiameterMm = 60.33, TPI = 11.5 }
         ];
 
         // Metodo 1: Restituisce la lista completa

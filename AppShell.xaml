@@ -23,6 +23,14 @@
         <Tab Title="Raccordi" Icon="appicon.png">
             <ShellContent ContentTemplate="{DataTemplate views:FittingsPage}" Route="FittingsPage" />
         </Tab>
+        
+        <Tab Title="Convertitore" Icon="appicon.png">
+            <ShellContent ContentTemplate="{DataTemplate views:ConvertersPage}" Route="ConvertersPage" />
+        </Tab>
+
+        <Tab Title="Prefori" Icon="appicon.png">
+            <ShellContent ContentTemplate="{DataTemplate views:DrillingPage}" Route="DrillingPage" />
+        </Tab>
 
     </TabBar>
 
