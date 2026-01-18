@@ -119,9 +119,9 @@ Il progetto è in continuo sviluppo. Ecco lo stato attuale dei lavori:
   - [x] Calcolatore Giri/min ($n = \frac{V_c \cdot 1000}{\pi \cdot D}$).
   - [x] Database materiali (Acciaio, Inox, Alluminio, ecc.) con $V_c$ preimpostate.
 
-- [ ] **Modulo Serraggio (Torque)**
-  - [ ] Tabella coppie di serraggio viti metriche (Classi 8.8, 10.9, 12.9).
-  - [ ] Filtro per diametro vite.
+- [x] **Modulo Serraggio (Torque)**
+  - [x] Tabella coppie di serraggio viti metriche (Classi 8.8, 10.9, 12.9).
+  - [x] Filtro per diametro vite.
 
 ## 🤝 Contributi
 
