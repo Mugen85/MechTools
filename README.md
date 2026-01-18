@@ -142,7 +142,7 @@ Se hai suggerimenti, vuoi segnalare un bug o discutere di opportunità lavorativ
 
 - 💼 **LinkedIn:** [Marco Morello](https://www.linkedin.com/in/marco-morello-b43b2a108)
 - 📧 **Email:** [doppiam1@gmail.com](mailto:doppiam1@gmail.com)
-- 🌐 **Blog:** [Il Viaggio del Programmatore](https://www.ilviaggiodelprogrammatore.it)
+- 🌐 **Blog:** [Il Viaggio del Programmatore](https://www.ilviaggiodelprogrammatore.com)
 
 ---
 *Progetto Open Source distribuito con licenza MIT.*
