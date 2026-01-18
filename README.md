@@ -131,10 +131,20 @@ I contributi sono benvenuti! Sentiti libero di aprire issue o pull request per m
 
 Questo progetto è distribuito sotto licenza MIT. Vedi il file `LICENSE` per maggiori dettagli.
 
-## 📧 Contatti
+---
 
-Per domande o collaborazioni, contattami tramite [il tuo contatto]
+## 👤 Autore e Contatti
+
+Questo progetto è sviluppato e mantenuto da **Marco Morello**, sviluppatore .NET e appassionato di meccanica.
+Il software nasce dall'esigenza reale di ottimizzare i tempi in officina e dalla volontà di applicare architetture software moderne (MVVM) in contesti industriali.
+
+Se hai suggerimenti, vuoi segnalare un bug o discutere di opportunità lavorative, sentiti libero di contattarmi:
+
+- 💼 **LinkedIn:** [Marco Morello](https://www.linkedin.com/in/marco-morello-b43b2a108)
+- 📧 **Email:** [doppiam1@gmail.com](mailto:doppiam1@gmail.com)
+- 🌐 **Blog:** [Il Viaggio del Programmatore](https://www.ilviaggiodelprogrammatore.it)
 
 ---
+*Progetto Open Source distribuito con licenza MIT.*
 
 **⚠️ Nota**: Questo è un progetto in continua evoluzione. Le funzionalità contrassegnate come "in sviluppo" potrebbero non essere completamente disponibili nella versione corrente.
