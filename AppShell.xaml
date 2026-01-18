@@ -32,6 +32,10 @@
             <ShellContent ContentTemplate="{DataTemplate views:DrillingPage}" Route="DrillingPage" />
         </Tab>
 
+        <Tab Title="Velocità" Icon="appicon.png">
+            <ShellContent ContentTemplate="{DataTemplate views:RpmPage}" Route="RpmPage" />
+        </Tab>
+
     </TabBar>
 
 </Shell>

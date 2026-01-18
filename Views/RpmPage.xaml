@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:MechTools.ViewModels"
+             x:Class="MechTools.Views.RpmPage"
+             Title="Calcolo Giri ⚙️"
+             BackgroundColor="#121212">
+
+    <Grid RowDefinitions="Auto, Auto, *" Padding="20" RowSpacing="20">
+
+        <Label Grid.Row="0" Text="CALCOLATORE GIRO MANDRINO" 
+               TextColor="Gray" FontSize="14" HorizontalOptions="Center" CharacterSpacing="2"/>
+
+        <Border Grid.Row="1" StrokeThickness="0" BackgroundColor="#1E1E1E" Padding="20">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="10"/>
+            </Border.StrokeShape>
+
+            <VerticalStackLayout Spacing="15">
+
+                <Label Text="MATERIALE DA LAVORARE" TextColor="#FF9900" FontSize="12" FontAttributes="Bold"/>
+                <Border Stroke="#333" BackgroundColor="#2D2D2D" Padding="0">
+                    <Picker ItemsSource="{Binding Materials}" 
+                            SelectedItem="{Binding SelectedMaterial}"
+                            ItemDisplayBinding="{Binding DisplayName}"
+                            TextColor="White" Title="Seleziona..." 
+                            TitleColor="Gray"
+                            BackgroundColor="Transparent"/>
+                </Border>
+
+                <Label Text="DIAMETRO UTENSILE (mm)" TextColor="#FF9900" FontSize="12" FontAttributes="Bold"/>
+                <Grid ColumnDefinitions="*, Auto" ColumnSpacing="10">
+                    <Entry Grid.Column="0" 
+                           Text="{Binding DiameterInput}"
+                           Placeholder="Es. 10"
+                           Keyboard="Numeric"
+                           TextColor="White" PlaceholderColor="#666" BackgroundColor="#2D2D2D"/>
+
+                    <Button Grid.Column="1" 
+                            Text="CALCOLA" 
+                            Command="{Binding CalculateCommand}"
+                            BackgroundColor="#FF9900" TextColor="Black" FontAttributes="Bold"/>
+                </Grid>
+            </VerticalStackLayout>
+        </Border>
+
+        <Border Grid.Row="2" Stroke="#444" StrokeThickness="4" BackgroundColor="Black" Padding="20" VerticalOptions="Start">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="5"/>
+            </Border.StrokeShape>
+
+            <VerticalStackLayout Spacing="5" VerticalOptions="Center">
+                <Label Text="SPEED (RPM)" TextColor="#00FF00" Opacity="0.7" FontSize="12" HorizontalOptions="End"/>
+
+                <Label Text="{Binding RpmResult}" 
+                       TextColor="#00FF00" 
+                       FontSize="70" 
+                       FontAttributes="Bold"
+                       HorizontalOptions="End"
+                       FontFamily="Monospace"/>
+
+                <BoxView HeightRequest="1" Color="#333" Margin="0,10"/>
+
+                <Label Text="{Binding FormulaDetails}" 
+                       TextColor="#00FF00" 
+                       Opacity="0.7" 
+                       FontSize="14" 
+                       HorizontalTextAlignment="End"/>
+            </VerticalStackLayout>
+        </Border>
+
+    </Grid>
+</ContentPage>
