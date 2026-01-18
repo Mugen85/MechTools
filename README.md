@@ -58,27 +58,70 @@ start Mechtools.sln
 2. Premi F5 per avviare l'applicazione in modalità debug
 3. Naviga tra le diverse funzionalità tramite il menu principale
 
-## 📁 Struttura del progetto
+## 📁 Struttura del Progetto
 
 ```
 Mechtools/
-├── Models/              # Modelli di dominio
-├── ViewModels/          # ViewModels MVVM
-├── Views/               # Pagine XAML
-├── Services/            # Servizi e logica di business
-│   ├── BoltKeyService.cs
-│   └── ThreadService.cs
-└── Resources/           # Risorse condivise
+├── Models/                  # Definizioni degli oggetti (Dati)
+│   ├── BoltKey.cs           # Modello Chiavi/Bulloni
+│   ├── Fitting.cs           # Modello Raccordi (Gas/NPT)
+│   ├── ConversionItem.cs    # Modello dati per il Convertitore
+│   └── ThreadItem.cs        # Modello Prefori Maschiatura
+│
+├── ViewModels/              # Logica di presentazione (MVVM)
+│   ├── MainViewModel.cs       # Logica pagina Chiavi
+│   ├── FittingsViewModel.cs   # Logica pagina Raccordi e Detector
+│   ├── ConvertersViewModel.cs # Logica Conversione pollici/mm
+│   └── DrillingViewModel.cs   # Logica filtri Prefori
+│
+├── Views/                   # Interfaccia Utente (XAML)
+│   ├── MainPage.xaml        # Page Chiavi
+│   ├── FittingsPage.xaml    # Page Raccordi
+│   ├── ConvertersPage.xaml  # Page Convertitore
+│   └── DrillingPage.xaml    # Page Prefori
+│
+├── Services/                # Logica di Business e Database statici
+│   ├── BoltKeyService.cs    # Dati Chiavi ISO
+│   ├── FittingService.cs    # Dati Raccordi e Algoritmo Detector
+│   └── DrillingService.cs   # Dati Maschiatura (Passo Fine/Grosso)
+│
+└── Resources/               # Asset Grafici
+    ├── AppIcon/             # Icone adattive Android/iOS
+    └── Splash/              # Splash Screen brandizzata
 ```
 
-## 🗺️ Roadmap
+## 🗺️ Roadmap e Funzionalità
 
-- [x] Convertitore vite-chiave ISO
-- [ ] Database completo raccordi idraulici
-- [ ] Riconoscimento filettature con algoritmo migliorato
-- [ ] Supporto per standard DIN e ANSI
-- [ ] Modalità offline con sincronizzazione cloud (opzionale)
-- [ ] Versione desktop Windows con .NET MAUI
+Il progetto è in continuo sviluppo. Ecco lo stato attuale dei lavori:
+
+- [x] **Core & UI**
+  - [x] Setup architettura MVVM con .NET MAUI.
+  - [x] Design System "Industrial" (Dark Mode, Contrasti elevati).
+  - [x] Icone adattive e Splash Screen professionali.
+  - [x] Navigazione tramite AppShell (Tabs).
+
+- [x] **Modulo Raccordi (Fittings)**
+  - [x] Database Standard GAS (BSP) e NPT (fino a 2").
+  - [x] *Smart Detector*: Algoritmo per identificare il raccordo dal diametro misurato.
+  - [x] Distinzione visiva tra filetti Conici e Cilindrici.
+
+- [x] **Modulo Convertitore (Converter)**
+  - [x] Motore di conversione Pollici/Millimetri.
+  - [x] Supporto input frazionario (es. "1/2", "3/8") e decimale.
+  - [x] Tabella di riferimento rapido integrata.
+
+- [x] **Modulo Prefori (Drilling)**
+  - [x] Database Maschiatura Metrica (M3 - M24).
+  - [x] Supporto doppio standard: Passo Grosso (ISO) e Passo Fine.
+  - [x] Visualizzazione immediata diametro punta.
+
+- [ ] **Modulo Velocità di Taglio (RPM)**
+  - [ ] Calcolatore Giri/min ($n = \frac{V_c \cdot 1000}{\pi \cdot D}$).
+  - [ ] Database materiali (Acciaio, Inox, Alluminio, ecc.) con $V_c$ preimpostate.
+
+- [ ] **Modulo Serraggio (Torque)**
+  - [ ] Tabella coppie di serraggio viti metriche (Classi 8.8, 10.9, 12.9).
+  - [ ] Filtro per diametro vite.
 
 ## 🤝 Contributi
 
