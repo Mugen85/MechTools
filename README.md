@@ -115,9 +115,9 @@ Il progetto è in continuo sviluppo. Ecco lo stato attuale dei lavori:
   - [x] Supporto doppio standard: Passo Grosso (ISO) e Passo Fine.
   - [x] Visualizzazione immediata diametro punta.
 
-- [ ] **Modulo Velocità di Taglio (RPM)**
-  - [ ] Calcolatore Giri/min ($n = \frac{V_c \cdot 1000}{\pi \cdot D}$).
-  - [ ] Database materiali (Acciaio, Inox, Alluminio, ecc.) con $V_c$ preimpostate.
+- [x] **Modulo Velocità di Taglio (RPM)**
+  - [x] Calcolatore Giri/min ($n = \frac{V_c \cdot 1000}{\pi \cdot D}$).
+  - [x] Database materiali (Acciaio, Inox, Alluminio, ecc.) con $V_c$ preimpostate.
 
 - [ ] **Modulo Serraggio (Torque)**
   - [ ] Tabella coppie di serraggio viti metriche (Classi 8.8, 10.9, 12.9).

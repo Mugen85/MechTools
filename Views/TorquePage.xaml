@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:MechTools.Models"
+             x:Class="MechTools.Views.TorquePage"
+             Title="Serraggi 🔧"
+             BackgroundColor="#121212">
+
+    <Grid RowDefinitions="Auto, Auto, *" Padding="10" RowSpacing="10">
+
+        <Label Grid.Row="0" Text="COPPIE DI SERRAGGIO (Nm)" 
+               TextColor="White" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center"/>
+
+        <Label Grid.Row="0" Text="ISO Standard - Passo Grosso" 
+               TextColor="Gray" FontSize="10" HorizontalOptions="Center" VerticalOptions="End" Margin="0,25,0,0"/>
+
+        <Border Grid.Row="1" BackgroundColor="#2D2D2D" StrokeThickness="0" Padding="10">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="5"/>
+            </Border.StrokeShape>
+            <Grid ColumnDefinitions="1.2*, *, *, *">
+                <Label Grid.Column="0" Text="VITE" FontAttributes="Bold" TextColor="White"/>
+                <Label Grid.Column="1" Text="8.8" FontAttributes="Bold" TextColor="#CCCCCC" HorizontalOptions="Center"/>
+                <Label Grid.Column="2" Text="10.9" FontAttributes="Bold" TextColor="#FFD700" HorizontalOptions="Center"/>
+                <Label Grid.Column="3" Text="12.9" FontAttributes="Bold" TextColor="#FF4500" HorizontalOptions="End"/>
+            </Grid>
+        </Border>
+
+        <CollectionView Grid.Row="2" ItemsSource="{Binding TorqueList}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:TorqueRow">
+                    <Border StrokeThickness="0" BackgroundColor="#1E1E1E" Margin="0,2" Padding="15,10">
+                        <Grid ColumnDefinitions="1.2*, *, *, *">
+
+                            <Label Grid.Column="0" Text="{Binding Diameter}" 
+                                   TextColor="White" FontAttributes="Bold" FontSize="16" VerticalOptions="Center"/>
+
+                            <Label Grid.Column="1" Text="{Binding Val88}" 
+                                   TextColor="{Binding Color88}" FontSize="16" HorizontalOptions="Center" VerticalOptions="Center"/>
+
+                            <Label Grid.Column="2" Text="{Binding Val109}" 
+                                   TextColor="{Binding Color109}" FontAttributes="Bold" FontSize="16" HorizontalOptions="Center" VerticalOptions="Center"/>
+
+                            <Label Grid.Column="3" Text="{Binding Val129}" 
+                                   TextColor="{Binding Color129}" FontAttributes="Bold" FontSize="16" HorizontalOptions="End" VerticalOptions="Center"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

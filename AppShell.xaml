@@ -3,39 +3,46 @@
     x:Class="MechTools.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:MechTools"
     xmlns:views="clr-namespace:MechTools.Views"
     Title="MechTools"
     BackgroundColor="#1E1E1E"
     ForegroundColor="White"
-    TitleColor="White"    
-    Shell.TabBarBackgroundColor="#1E1E1E"
-    Shell.TabBarTitleColor="#FF9900"
-    Shell.TabBarUnselectedColor="#999999">
-    
+    TitleColor="White"
+    FlyoutBackgroundColor="#1E1E1E">
 
-    <TabBar>
+    <Shell.FlyoutHeader>
+        <VerticalStackLayout BackgroundColor="#2D2D2D" Padding="20" Spacing="10">
+            <Image Source="appicon.png" HeightRequest="80" HorizontalOptions="Center"/>
+            <Label Text="MECH TOOLS" TextColor="#FF9900" FontAttributes="Bold" HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+    </Shell.FlyoutHeader>
 
-        <Tab Title="Chiavi" Icon="appicon.png">
-            <ShellContent ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage" />
-        </Tab>
+    <FlyoutItem Title="Home Dashboard" Icon="appicon.png">
+        <ShellContent ContentTemplate="{DataTemplate views:DashboardPage}" Route="DashboardPage" />
+    </FlyoutItem>
 
-        <Tab Title="Raccordi" Icon="appicon.png">
-            <ShellContent ContentTemplate="{DataTemplate views:FittingsPage}" Route="FittingsPage" />
-        </Tab>
-        
-        <Tab Title="Convertitore" Icon="appicon.png">
-            <ShellContent ContentTemplate="{DataTemplate views:ConvertersPage}" Route="ConvertersPage" />
-        </Tab>
+    <FlyoutItem Title="Chiavi e Bulloni" Icon="appicon.png">
+        <ShellContent ContentTemplate="{DataTemplate views:KeysPage}" Route="KeysPage" />
+    </FlyoutItem>
 
-        <Tab Title="Prefori" Icon="appicon.png">
-            <ShellContent ContentTemplate="{DataTemplate views:DrillingPage}" Route="DrillingPage" />
-        </Tab>
+    <FlyoutItem Title="Raccordi Idraulici" Icon="appicon.png">
+        <ShellContent ContentTemplate="{DataTemplate views:FittingsPage}" Route="FittingsPage" />
+    </FlyoutItem>
 
-        <Tab Title="Velocità" Icon="appicon.png">
-            <ShellContent ContentTemplate="{DataTemplate views:RpmPage}" Route="RpmPage" />
-        </Tab>
+    <FlyoutItem Title="Prefori Maschiatura" Icon="appicon.png">
+        <ShellContent ContentTemplate="{DataTemplate views:DrillingPage}" Route="DrillingPage" />
+    </FlyoutItem>
 
-    </TabBar>
+    <FlyoutItem Title="Coppie di Serraggio" Icon="appicon.png">
+        <ShellContent ContentTemplate="{DataTemplate views:TorquePage}" Route="TorquePage" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Calcolo Velocità" Icon="appicon.png">
+        <ShellContent ContentTemplate="{DataTemplate views:RpmPage}" Route="RpmPage" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Convertitore" Icon="appicon.png">
+        <ShellContent ContentTemplate="{DataTemplate views:ConvertersPage}" Route="ConvertersPage" />
+    </FlyoutItem>
 
 </Shell>
