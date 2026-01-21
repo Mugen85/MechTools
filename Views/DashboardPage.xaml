@@ -6,98 +6,110 @@
              BackgroundColor="#121212">
 
     <ScrollView>
-        <Grid Grid.Row="1" ColumnDefinitions="*,*" RowDefinitions="130,130,130" ColumnSpacing="15" RowSpacing="15">
+        <Grid Grid.Row="1" 
+              ColumnDefinitions="*,*" 
+              RowDefinitions="80,130,130,130" 
+              ColumnSpacing="15" 
+              RowSpacing="15"
+              Padding="0,10,0,0">
+            <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                    Stroke="#FFFF00" StrokeThickness="2"
+                    BackgroundColor="#333300">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12"/>
+                </Border.StrokeShape>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="BtnFlashlight_Clicked"/>
+                </Border.GestureRecognizers>
 
-            <Border Grid.Row="0" Grid.Column="0"
-                        Stroke="#FF9900" StrokeThickness="2"
-                        BackgroundColor="#252525">
+                <Grid ColumnDefinitions="Auto, *" Padding="20,0">
+                    <Image Grid.Column="0" Source="img_flashlight.png" 
+                           Aspect="AspectFit" HeightRequest="30" WidthRequest="30" 
+                           VerticalOptions="Center"/>
+                    <Label Grid.Column="1" Text="TORCIA ON / OFF" 
+                           TextColor="#FFFF00" FontAttributes="Bold" FontSize="18"
+                           HorizontalOptions="Center" VerticalOptions="Center"/>
+                </Grid>
+            </Border>
+
+            <Border Grid.Row="1" Grid.Column="0"
+                    Stroke="#FF9900" StrokeThickness="2" BackgroundColor="#252525">
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="12"/>
                 </Border.StrokeShape>
                 <Border.GestureRecognizers>
                     <TapGestureRecognizer Tapped="BtnKeys_Clicked"/>
                 </Border.GestureRecognizers>
-
                 <Grid RowDefinitions="*, Auto" Padding="10">
                     <Image Grid.Row="0" Source="img_wrench.png" Aspect="AspectFit" Margin="0,0,0,5"/>
                     <Label Grid.Row="1" Text="CHIAVI" TextColor="White" FontAttributes="Bold" HorizontalOptions="Center"/>
                 </Grid>
             </Border>
 
-            <Border Grid.Row="0" Grid.Column="1"
-                        Stroke="#FF9900" StrokeThickness="2"
-                        BackgroundColor="#252525">
+            <Border Grid.Row="1" Grid.Column="1"
+                    Stroke="#FF9900" StrokeThickness="2" BackgroundColor="#252525">
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="12"/>
                 </Border.StrokeShape>
                 <Border.GestureRecognizers>
                     <TapGestureRecognizer Tapped="BtnFittings_Clicked"/>
                 </Border.GestureRecognizers>
-
                 <Grid RowDefinitions="*, Auto" Padding="10">
                     <Image Grid.Row="0" Source="img_pipe.png" Aspect="AspectFit" Margin="0,0,0,5"/>
                     <Label Grid.Row="1" Text="RACCORDI" TextColor="White" FontAttributes="Bold" HorizontalOptions="Center"/>
                 </Grid>
             </Border>
 
-            <Border Grid.Row="1" Grid.Column="0"
-                        Stroke="#007ACC" StrokeThickness="2"
-                        BackgroundColor="#252525">
+            <Border Grid.Row="2" Grid.Column="0"
+                    Stroke="#007ACC" StrokeThickness="2" BackgroundColor="#252525">
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="12"/>
                 </Border.StrokeShape>
                 <Border.GestureRecognizers>
                     <TapGestureRecognizer Tapped="BtnDrilling_Clicked"/>
                 </Border.GestureRecognizers>
-
                 <Grid RowDefinitions="*, Auto" Padding="10">
                     <Image Grid.Row="0" Source="img_drill.png" Aspect="AspectFit" Margin="0,0,0,5"/>
                     <Label Grid.Row="1" Text="PREFORI" TextColor="White" FontAttributes="Bold" HorizontalOptions="Center"/>
                 </Grid>
             </Border>
 
-            <Border Grid.Row="1" Grid.Column="1"
-                        Stroke="#D32F2F" StrokeThickness="2"
-                        BackgroundColor="#252525">
+            <Border Grid.Row="2" Grid.Column="1"
+                    Stroke="#D32F2F" StrokeThickness="2" BackgroundColor="#252525">
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="12"/>
                 </Border.StrokeShape>
                 <Border.GestureRecognizers>
                     <TapGestureRecognizer Tapped="BtnTorque_Clicked"/>
                 </Border.GestureRecognizers>
-
                 <Grid RowDefinitions="*, Auto" Padding="10">
                     <Image Grid.Row="0" Source="img_torque.png" Aspect="AspectFit" Margin="0,0,0,5"/>
                     <Label Grid.Row="1" Text="SERRAGGI" TextColor="White" FontAttributes="Bold" HorizontalOptions="Center"/>
                 </Grid>
             </Border>
 
-            <Border Grid.Row="2" Grid.Column="0"
-                        Stroke="#00FF00" StrokeThickness="2"
-                        BackgroundColor="#252525">
+            <Border Grid.Row="3" Grid.Column="0"
+                    Stroke="#00FF00" StrokeThickness="2" BackgroundColor="#252525">
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="12"/>
                 </Border.StrokeShape>
                 <Border.GestureRecognizers>
                     <TapGestureRecognizer Tapped="BtnRpm_Clicked"/>
                 </Border.GestureRecognizers>
-
                 <Grid RowDefinitions="*, Auto" Padding="10">
                     <Image Grid.Row="0" Source="img_fan.png" Aspect="AspectFit" Margin="0,0,0,5"/>
                     <Label Grid.Row="1" Text="RPM / VEL." TextColor="White" FontAttributes="Bold" HorizontalOptions="Center"/>
                 </Grid>
             </Border>
 
-            <Border Grid.Row="2" Grid.Column="1"
-                        Stroke="#CCCCCC" StrokeThickness="2"
-                        BackgroundColor="#252525">
+            <Border Grid.Row="3" Grid.Column="1"
+                    Stroke="#CCCCCC" StrokeThickness="2" BackgroundColor="#252525">
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="12"/>
                 </Border.StrokeShape>
                 <Border.GestureRecognizers>
                     <TapGestureRecognizer Tapped="BtnConverter_Clicked"/>
                 </Border.GestureRecognizers>
-
                 <Grid RowDefinitions="*, Auto" Padding="10">
                     <Image Grid.Row="0" Source="img_ruler.png" Aspect="AspectFit" Margin="0,0,0,5"/>
                     <Label Grid.Row="1" Text="CONVERT." TextColor="White" FontAttributes="Bold" HorizontalOptions="Center"/>
