@@ -6,21 +6,19 @@
              Title="Convertitore 📐"
              BackgroundColor="#121212">
 
-    <Grid RowDefinitions="Auto, Auto, *" RowSpacing="20" Padding="20">
+    <Grid RowDefinitions="Auto, Auto, Auto, *" RowSpacing="15" Padding="20">
 
         <Label Grid.Row="0" 
-               Text="POLLICI ➜ MM" 
-               TextColor="White" FontSize="24" FontAttributes="Bold" 
+               Text="LUNGHEZZA (Pollici ➜ mm)" 
+               TextColor="White" FontSize="20" FontAttributes="Bold" 
                HorizontalOptions="Center"/>
 
         <Border Grid.Row="1" Stroke="#333" BackgroundColor="#1E1E1E" Padding="15">
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="10"/>
             </Border.StrokeShape>
-
-            <VerticalStackLayout Spacing="15">
-                <Label Text="Inserisci pollici (es. 3/8 o 0.375):" TextColor="Gray"/>
-
+            <VerticalStackLayout Spacing="10">
+                <Label Text="Inserisci pollici (es. 3/8 o 0.375):" TextColor="Gray" FontSize="12"/>
                 <Grid ColumnDefinitions="*, Auto" ColumnSpacing="10">
                     <Entry Grid.Column="0"
                            Placeholder="Es. 1/2"
@@ -32,21 +30,57 @@
                             Command="{Binding ConvertCommand}"
                             BackgroundColor="#FF9900" TextColor="Black" FontAttributes="Bold"/>
                 </Grid>
-
                 <Label Text="{Binding ResultText}" 
-                       TextColor="#FF9900" FontSize="20" FontAttributes="Bold" 
+                       TextColor="#FF9900" FontSize="18" FontAttributes="Bold" 
                        HorizontalOptions="Center"/>
             </VerticalStackLayout>
         </Border>
 
-        <CollectionView Grid.Row="2" ItemsSource="{Binding QuickList}">
+        <Border Grid.Row="2" Stroke="#D32F2F" StrokeThickness="2" BackgroundColor="#1E1E1E" Padding="15">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="10"/>
+            </Border.StrokeShape>
+
+            <VerticalStackLayout Spacing="10">
+                <Label Text="PRESSIONE (Bar ↔ PSI)" 
+                       TextColor="#D32F2F" FontSize="20" FontAttributes="Bold" 
+                       HorizontalOptions="Center"/>
+
+                <Grid ColumnDefinitions="*, Auto, *" RowDefinitions="Auto, Auto" ColumnSpacing="10">
+                    <Label Grid.Row="0" Grid.Column="0" Text="BAR" TextColor="Gray" HorizontalOptions="Center" FontSize="12"/>
+                    <Label Grid.Row="0" Grid.Column="2" Text="PSI" TextColor="Gray" HorizontalOptions="Center" FontSize="12"/>
+
+                    <Entry Grid.Row="1" Grid.Column="0"
+                           x:Name="TxtBar"
+                           Placeholder="0.0"
+                           Keyboard="Numeric"
+                           TextChanged="TxtBar_TextChanged"
+                           HorizontalTextAlignment="Center"
+                           BackgroundColor="#2D2D2D"
+                           TextColor="White"/>
+
+                    <Label Grid.Row="1" Grid.Column="1" Text="=" TextColor="Gray" FontSize="20" VerticalOptions="Center"/>
+
+                    <Entry Grid.Row="1" Grid.Column="2"
+                           x:Name="TxtPsi"
+                           Placeholder="0.0"
+                           Keyboard="Numeric"
+                           TextChanged="TxtPsi_TextChanged"
+                           HorizontalTextAlignment="Center"
+                           BackgroundColor="#2D2D2D"
+                           TextColor="White"/>
+                </Grid>
+            </VerticalStackLayout>
+        </Border>
+
+        <CollectionView Grid.Row="3" ItemsSource="{Binding QuickList}">
             <CollectionView.Header>
-                <Label Text="Tabella Riferimento Standard" TextColor="Gray" Margin="0,0,0,10"/>
+                <Label Text="Tabella Riferimento Standard" TextColor="Gray" Margin="0,10,0,10" HorizontalOptions="Center"/>
             </CollectionView.Header>
 
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:ConversionItem">
-                    <Border StrokeThickness="0" BackgroundColor="#1E1E1E" Margin="0,5" Padding="15">
+                    <Border StrokeThickness="0" BackgroundColor="#1E1E1E" Margin="0,2" Padding="10">
                         <Border.StrokeShape>
                             <RoundRectangle CornerRadius="5"/>
                         </Border.StrokeShape>
