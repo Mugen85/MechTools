@@ -1,4 +1,4 @@
-# 🔧 Mechtools - Assistente digitale per officina
+# 🔧 Mechtools v1.4 - Assistente digitale per officina
 
 Questa applicazione multipiattaforma è stata progettata per supportare montatori meccanici e manutentori nelle attività quotidiane di officina e cantiere. Il progetto nasce dalla volontà di unire l'esperienza pratica nel settore metalmeccanico con le competenze di sviluppo software, creando uno strumento che risolve problemi concreti in modo rapido e senza necessità di connessione internet. 📱⚙️
 
@@ -6,14 +6,22 @@ Questa applicazione multipiattaforma è stata progettata per supportare montator
 
 L'applicazione è sviluppata seguendo le reali necessità operative di chi lavora sul campo.
 
-### 🔩 Convertitore vite-chiave intelligente
+### 💧 Database Raccordi & Workshop Mode (Novità v1.4)
+Nuova interfaccia a schede (**Strumenti** vs **Tabelle**) per ottimizzare lo spazio su schermo.
+* **Standard Supportati:** GAS (BSP - Blu), NPT (USA - Rosso) e **JIC 37°** (Oleodinamica - Viola).
+* **Riconoscimento Filettature:** Identifica il raccordo misurando punta e fondo col calibro.
+* **Trova Adattatore:** Calcolatore logico per individuare il raccordo di giunzione (Nipplo, Manicotto, Riduzione) dati due attacchi Maschio/Femmina.
+
+### 🔦 Torcia & Utilità
+* **Torcia Integrata:** Pulsante rapido per illuminare zone di lavoro buie direttamente dall'app.
+* **Feedback Tattile:** Vibrazione alla pressione dei tasti per conferma operativa (utile con i guanti).
+
+### 🔩 Convertitore Vite-Chiave
 Permette di individuare immediatamente la chiave fissa o la brugola necessaria partendo dalla misura della vite e viceversa. Supporta lo standard ISO e gestisce le eccezioni per le misure pesanti fino a M52.
 
-### 💧 Database raccordi idraulici
-*In sviluppo* - Tabella di consultazione rapida per distinguere raccordi GAS (BSP) e NPT, con visualizzazione dei filetti per pollice (TPI) e diametri nominali.
-
-### 🔍 Riconoscimento filettature
-Strumento di calcolo per identificare la conicità dei raccordi tramite misurazione col calibro, utile quando non si dispone di un contafiletti.
+### 🔄 Convertitori Tecnici
+* **Pollici/Millimetri:** Conversione bidirezionale con supporto frazioni (es. "3/8").
+* **Pressione:** Convertitore istantaneo **Bar ↔ PSI**.
 
 ## 🏗️ Architettura Software
 
@@ -23,13 +31,19 @@ Dal punto di vista tecnico, il progetto è realizzato per dimostrare una gestion
 Sviluppato in C# su piattaforma **.NET MAUI 9** per garantire la compatibilità nativa su Android e iOS con un'unica base di codice.
 
 ### 🎨 Pattern MVVM
-L'architettura segue rigorosamente il pattern **model-view-viewmodel** per separare la logica di business dall'interfaccia utente. Questo rende il codice testabile, manutenibile e modulare.
+L'architettura segue rigorosamente il pattern **Model-View-ViewModel** per separare la logica di business dall'interfaccia utente.
+* **Views:** XAML puro con Binding.
+* **ViewModels:** Logica di presentazione gestita tramite `CommunityToolkit.Mvvm`.
+* **Services:** Logica di calcolo (algoritmi di riconoscimento raccordi, tabelle dati statiche).
 
-### 🛠️ Community toolkit MVVM
+### 🛠️ Community Toolkit MVVM
 Utilizzo del toolkit ufficiale per la gestione ottimizzata di `ObservableProperty` e `RelayCommand`, riducendo il codice boilerplate e migliorando le performance.
 
-### ✨ Clean code
-I dati tecnici (tabelle ISO, misure raccordi) sono isolati in servizi dedicati, rendendo semplice l'aggiornamento delle normative senza intaccare la logica dell'applicazione.
+### ✨ Clean Code & Best Practices
+* Nessun dato *hardcoded* nelle viste.
+* Utilizzo di `Dependency Injection` (ove necessario).
+* Gestione asincrona dei comandi.
+* Struttura modulare scalabile (facile aggiunta di nuovi standard come ORFS o Metrico).
 
 ## 🎯 Obiettivi del Progetto
 
@@ -37,9 +51,9 @@ Questo repository serve come dimostrazione di competenza nello sviluppo full-sta
 
 ## 📋 Requisiti
 
-- Visual Studio 2022 o successivi
-- Workload **.NET multi-platform app UI** installato
-- Android SDK (per l'emulazione)
+- Visual Studio 2022 (v17.8+)
+- Workload **.NET Multi-platform App UI** installato
+- Android SDK (API 33+)
 
 ## 🚀 Installazione
 
@@ -54,39 +68,33 @@ start Mechtools.sln
 
 ## 💻 Utilizzo
 
-1. Seleziona l'emulatore Android o il dispositivo fisico
-2. Premi F5 per avviare l'applicazione in modalità debug
-3. Naviga tra le diverse funzionalità tramite il menu principale
+1. Seleziona l'emulatore Android o il dispositivo fisico (Debug USB attivo).
+2. Premi F5 per avviare l'applicazione.
+3. Usa la **Workshop Mode** nella pagina raccordi per switchare tra Calcolatori e Tabelle.
 
 ## 📁 Struttura del Progetto
 
 ```
 Mechtools/
 ├── Models/                  # Definizioni degli oggetti (Dati)
-│   ├── BoltKey.cs           # Modello Chiavi/Bulloni
-│   ├── Fitting.cs           # Modello Raccordi (Gas/NPT)
-│   ├── ConversionItem.cs    # Modello dati per il Convertitore
-│   └── ThreadItem.cs        # Modello Prefori Maschiatura
+│   ├── Fitting.cs           # Modello Raccordi (Gas/NPT/JIC)
+│   └── ...
 │
 ├── ViewModels/              # Logica di presentazione (MVVM)
-│   ├── MainViewModel.cs       # Logica pagina Chiavi
-│   ├── FittingsViewModel.cs   # Logica pagina Raccordi e Detector
-│   ├── ConvertersViewModel.cs # Logica Conversione pollici/mm
-│   └── DrillingViewModel.cs   # Logica filtri Prefori
+│   ├── MainViewModel.cs     # Dashboard
+│   ├── FittingsViewModel.cs # Logica Raccordi, JIC, Adattatori
+│   └── ...
 │
 ├── Views/                   # Interfaccia Utente (XAML)
-│   ├── MainPage.xaml        # Page Chiavi
-│   ├── FittingsPage.xaml    # Page Raccordi
-│   ├── ConvertersPage.xaml  # Page Convertitore
-│   └── DrillingPage.xaml    # Page Prefori
+│   ├── FittingsPage.xaml    # UI con Dual-Mode (Strumenti/Tabelle)
+│   └── ...
 │
 ├── Services/                # Logica di Business e Database statici
-│   ├── BoltKeyService.cs    # Dati Chiavi ISO
-│   ├── FittingService.cs    # Dati Raccordi e Algoritmo Detector
-│   └── DrillingService.cs   # Dati Maschiatura (Passo Fine/Grosso)
+│   ├── FittingService.cs    # Algoritmo Detector e Tabelle Dati
+│   └── ...
 │
 └── Resources/               # Asset Grafici
-    ├── AppIcon/             # Icone adattive Android/iOS
+    ├── AppIcon/             # Icone adattive
     └── Splash/              # Splash Screen brandizzata
 ```
 
@@ -94,34 +102,29 @@ Mechtools/
 
 Il progetto è in continuo sviluppo. Ecco lo stato attuale dei lavori:
 
-- [x] **Core & UI**
-  - [x] Setup architettura MVVM con .NET MAUI.
-  - [x] Design System "Industrial" (Dark Mode, Contrasti elevati).
-  - [x] Icone adattive e Splash Screen professionali.
-  - [x] Navigazione tramite AppShell (Tabs).
+* [x] **Core & UI**
+* [x] Setup architettura MVVM con .NET MAUI 9.
+* [x] Design System "Industrial" (Dark Mode, Contrasti elevati).
+* [x] Navigazione tramite AppShell.
 
-- [x] **Modulo Raccordi (Fittings)**
-  - [x] Database Standard GAS (BSP) e NPT (fino a 2").
-  - [x] *Smart Detector*: Algoritmo per identificare il raccordo dal diametro misurato.
-  - [x] Distinzione visiva tra filetti Conici e Cilindrici.
 
-- [x] **Modulo Convertitore (Converter)**
-  - [x] Motore di conversione Pollici/Millimetri.
-  - [x] Supporto input frazionario (es. "1/2", "3/8") e decimale.
-  - [x] Tabella di riferimento rapido integrata.
+* [x] **Modulo Raccordi (Fittings)**
+* [x] Database Standard GAS, NPT e **JIC 37°**.
+* [x] **UI Workshop Mode:** Divisione Strumenti/Tabelle.
+* [x] *Smart Detector*: Algoritmo identificazione filetti.
+* [x] *Adapter Finder*: Calcolatore Nippli/Riduzioni.
+* [x] Color Coding (🔵🔴🟣).
 
-- [x] **Modulo Prefori (Drilling)**
-  - [x] Database Maschiatura Metrica (M3 - M24).
-  - [x] Supporto doppio standard: Passo Grosso (ISO) e Passo Fine.
-  - [x] Visualizzazione immediata diametro punta.
 
-- [x] **Modulo Velocità di Taglio (RPM)**
-  - [x] Calcolatore Giri/min ($n = \frac{V_c \cdot 1000}{\pi \cdot D}$).
-  - [x] Database materiali (Acciaio, Inox, Alluminio, ecc.) con $V_c$ preimpostate.
+* [x] **Modulo Convertitori**
+* [x] Pollici/Millimetri.
+* [x] Pressione (Bar/PSI).
 
-- [x] **Modulo Serraggio (Torque)**
-  - [x] Tabella coppie di serraggio viti metriche (Classi 8.8, 10.9, 12.9).
-  - [x] Filtro per diametro vite.
+
+* [x] **Modulo Officina**
+* [x] Torcia integrata.
+* [x] Calcolo Giri/min ().
+* [x] Tabelle Filettature e Serraggi.
 
 ## 🤝 Contributi
 
@@ -136,15 +139,11 @@ Questo progetto è distribuito sotto licenza MIT. Vedi il file `LICENSE` per mag
 ## 👤 Autore e Contatti
 
 Questo progetto è sviluppato e mantenuto da **Marco Morello**, sviluppatore .NET e appassionato di meccanica.
-Il software nasce dall'esigenza reale di ottimizzare i tempi in officina e dalla volontà di applicare architetture software moderne (MVVM) in contesti industriali.
 
-Se hai suggerimenti, vuoi segnalare un bug o discutere di opportunità lavorative, sentiti libero di contattarmi:
-
-- 💼 **LinkedIn:** [Marco Morello](https://www.linkedin.com/in/marco-morello-b43b2a108)
-- 📧 **Email:** [doppiam1@gmail.com](mailto:doppiam1@gmail.com)
-- 🌐 **Blog:** [Il Viaggio del Programmatore](https://www.ilviaggiodelprogrammatore.com)
+* 💼 **LinkedIn:** [Marco Morello](https://www.linkedin.com/in/marco-morello-b43b2a108)
+* 📧 **Email:** [doppiam1@gmail.com](mailto:doppiam1@gmail.com)
+* 🌐 **Blog:** [Il Viaggio del Programmatore](https://www.ilviaggiodelprogrammatore.com)
 
 ---
-*Progetto Open Source distribuito con licenza MIT.*
 
-**⚠️ Nota**: Questo è un progetto in continua evoluzione. Le funzionalità contrassegnate come "in sviluppo" potrebbero non essere completamente disponibili nella versione corrente.
+*Progetto Open Source distribuito con licenza MIT.*
