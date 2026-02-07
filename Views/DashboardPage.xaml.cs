@@ -1,5 +1,3 @@
-using Microsoft.Maui.Devices; // Serve per la torcia e il display
-
 namespace MechTools.Views;
 
 public partial class DashboardPage : ContentPage

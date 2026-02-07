@@ -7,138 +7,174 @@
              Title="Raccordi Idraulici 💧"
              BackgroundColor="#121212">
 
-    <CollectionView ItemsSource="{Binding FittingsList}"
-                    SelectionMode="None">
+    <Grid RowDefinitions="Auto, *">
 
-        <CollectionView.Header>
-            <VerticalStackLayout Spacing="15" Padding="15">
+        <Grid Grid.Row="0" ColumnDefinitions="*,*" HeightRequest="60" BackgroundColor="#1E1E1E">
 
-                <Border Stroke="#333333" StrokeThickness="1" BackgroundColor="#1E1E1E" Padding="15">
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="10"/>
-                    </Border.StrokeShape>
-                    <VerticalStackLayout Spacing="10">
-                        <Label Text="IDENTIFICA DA DIAMETRO 📏" TextColor="#FF9900" FontAttributes="Bold" FontSize="12"/>
-                        <Grid ColumnDefinitions="*,*,Auto" ColumnSpacing="10">
-                            <Entry Grid.Column="0" Placeholder="Punta" Text="{Binding DiameterTip}" Keyboard="Numeric" TextColor="White" PlaceholderColor="#666" BackgroundColor="#2D2D2D"/>
-                            <Entry Grid.Column="1" Placeholder="Fondo" Text="{Binding DiameterBottom}" Keyboard="Numeric" TextColor="White" PlaceholderColor="#666" BackgroundColor="#2D2D2D"/>
-                            <Button Grid.Column="2" Text="🔍" Command="{Binding AnalyzeCommand}" BackgroundColor="#FF9900" TextColor="Black" FontAttributes="Bold"/>
-                        </Grid>
-                        <Label Text="{Binding DetectorResult}" TextColor="White" FontAttributes="Bold" HorizontalTextAlignment="Center" FontSize="16"/>
-                    </VerticalStackLayout>
-                </Border>
+            <Button Grid.Column="0" 
+                    Text="🛠️ STRUMENTI" 
+                    Command="{Binding ShowCalculatorsCommand}"
+                    BackgroundColor="{Binding CalcBtnColor}"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    CornerRadius="0"
+                    BorderWidth="0"/>
 
-                <Border Stroke="#FF9900" StrokeThickness="1" BackgroundColor="#1E1E1E" Padding="15">
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="10"/>
-                    </Border.StrokeShape>
-                    <VerticalStackLayout Spacing="10">
-                        <Label Text="TROVA ADATTATORE 🔗" TextColor="#FF9900" FontAttributes="Bold" FontSize="12"/>
-                        <Label Text="Seleziona cosa hai (A) e dove devi andare (B):" TextColor="Gray" FontSize="11"/>
+            <Button Grid.Column="1" 
+                    Text="📋 TABELLE" 
+                    Command="{Binding ShowTablesCommand}"
+                    BackgroundColor="{Binding TableBtnColor}"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    CornerRadius="0"
+                    BorderWidth="0"/>
 
-                        <Grid ColumnDefinitions="*, *" ColumnSpacing="10">
-                            <VerticalStackLayout Grid.Column="0" Spacing="5">
-                                <Label Text="PARTENZA (A)" TextColor="White" HorizontalOptions="Center" FontAttributes="Bold" FontSize="12"/>
-                                <Picker x:Name="PkGenderA" Title="M/F" TextColor="White" TitleColor="Gray" BackgroundColor="#2D2D2D" SelectedIndex="0">
-                                    <Picker.ItemsSource>
-                                        <x:Array Type="{x:Type x:String}">
-                                            <x:String>Maschio</x:String>
-                                            <x:String>Femmina</x:String>
-                                        </x:Array>
-                                    </Picker.ItemsSource>
-                                </Picker>
-                                <Picker x:Name="PkSizeA" Title="Misura" TextColor="White" TitleColor="Gray" BackgroundColor="#2D2D2D" SelectedIndex="1">
-                                    <Picker.ItemsSource>
-                                        <x:Array Type="{x:Type x:String}">
-                                            <x:String>1/8"</x:String>
-                                            <x:String>1/4"</x:String>
-                                            <x:String>3/8"</x:String>
-                                            <x:String>1/2"</x:String>
-                                            <x:String>3/4"</x:String>
-                                            <x:String>1"</x:String>
-                                        </x:Array>
-                                    </Picker.ItemsSource>
-                                </Picker>
-                                <Picker x:Name="PkTypeA" Title="Tipo" TextColor="White" TitleColor="Gray" BackgroundColor="#2D2D2D" SelectedIndex="0">
-                                    <Picker.ItemsSource>
-                                        <x:Array Type="{x:Type x:String}">
-                                            <x:String>GAS</x:String>
-                                            <x:String>NPT</x:String>
-                                            <x:String>Metrico</x:String>
-                                        </x:Array>
-                                    </Picker.ItemsSource>
-                                </Picker>
-                            </VerticalStackLayout>
+            <BoxView Grid.ColumnSpan="2" VerticalOptions="End" HeightRequest="2" Color="#333"/>
+        </Grid>
 
-                            <VerticalStackLayout Grid.Column="1" Spacing="5">
-                                <Label Text="ARRIVO (B)" TextColor="White" HorizontalOptions="Center" FontAttributes="Bold" FontSize="12"/>
-                                <Picker x:Name="PkGenderB" Title="M/F" TextColor="White" TitleColor="Gray" BackgroundColor="#2D2D2D" SelectedIndex="1">
-                                    <Picker.ItemsSource>
-                                        <x:Array Type="{x:Type x:String}">
-                                            <x:String>Maschio</x:String>
-                                            <x:String>Femmina</x:String>
-                                        </x:Array>
-                                    </Picker.ItemsSource>
-                                </Picker>
-                                <Picker x:Name="PkSizeB" Title="Misura" TextColor="White" TitleColor="Gray" BackgroundColor="#2D2D2D" SelectedIndex="1">
-                                    <Picker.ItemsSource>
-                                        <x:Array Type="{x:Type x:String}">
-                                            <x:String>1/8"</x:String>
-                                            <x:String>1/4"</x:String>
-                                            <x:String>3/8"</x:String>
-                                            <x:String>1/2"</x:String>
-                                            <x:String>3/4"</x:String>
-                                            <x:String>1"</x:String>
-                                        </x:Array>
-                                    </Picker.ItemsSource>
-                                </Picker>
-                                <Picker x:Name="PkTypeB" Title="Tipo" TextColor="White" TitleColor="Gray" BackgroundColor="#2D2D2D" SelectedIndex="0">
-                                    <Picker.ItemsSource>
-                                        <x:Array Type="{x:Type x:String}">
-                                            <x:String>GAS</x:String>
-                                            <x:String>NPT</x:String>
-                                            <x:String>Metrico</x:String>
-                                        </x:Array>
-                                    </Picker.ItemsSource>
-                                </Picker>
-                            </VerticalStackLayout>
-                        </Grid>
 
-                        <Button Text="CALCOLA RACCORDO" Clicked="BtnCalcolaRaccordo_Clicked" BackgroundColor="#FF9900" TextColor="Black" FontAttributes="Bold"/>
-                        <Label x:Name="LblRisultatoRaccordo" Text="" TextColor="#FF9900" FontSize="14" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
-                    </VerticalStackLayout>
-                </Border>
+        <Grid Grid.Row="1" Padding="10">
 
-                <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
-                    <Button Grid.Column="0" Text="GAS (BSP)" Command="{Binding LoadGasCommand}" BackgroundColor="#007ACC" TextColor="White" HeightRequest="40"/>
-                    <Button Grid.Column="1" Text="NPT (USA)" Command="{Binding LoadNptCommand}" BackgroundColor="#D32F2F" TextColor="White" HeightRequest="40"/>
+            <ScrollView IsVisible="{Binding IsCalculatorMode}">
+                <VerticalStackLayout Spacing="15">
+
+                    <Border Stroke="#333333" StrokeThickness="1" BackgroundColor="#1E1E1E" Padding="15">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="10"/>
+                        </Border.StrokeShape>
+                        <VerticalStackLayout Spacing="10">
+                            <Label Text="IDENTIFICA DA DIAMETRO 📏" TextColor="#FF9900" FontAttributes="Bold" FontSize="14"/>
+                            <Grid ColumnDefinitions="*,*,Auto" ColumnSpacing="10">
+                                <Entry Grid.Column="0" Placeholder="Punta" Text="{Binding DiameterTip}" Keyboard="Numeric" TextColor="White" PlaceholderColor="#666" BackgroundColor="#2D2D2D"/>
+                                <Entry Grid.Column="1" Placeholder="Fondo" Text="{Binding DiameterBottom}" Keyboard="Numeric" TextColor="White" PlaceholderColor="#666" BackgroundColor="#2D2D2D"/>
+                                <Button Grid.Column="2" Text="🔍" Command="{Binding AnalyzeCommand}" BackgroundColor="#FF9900" TextColor="Black" FontAttributes="Bold"/>
+                            </Grid>
+                            <Label Text="{Binding DetectorResult}" TextColor="White" FontAttributes="Bold" HorizontalTextAlignment="Center" FontSize="16"/>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Stroke="#FF9900" StrokeThickness="1" BackgroundColor="#1E1E1E" Padding="15">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="10"/>
+                        </Border.StrokeShape>
+                        <VerticalStackLayout Spacing="10">
+                            <Label Text="TROVA ADATTATORE 🔗" TextColor="#FF9900" FontAttributes="Bold" FontSize="14"/>
+                            <Label Text="Seleziona cosa hai (A) e dove devi andare (B):" TextColor="Gray" FontSize="12"/>
+
+                            <Grid ColumnDefinitions="*, *" ColumnSpacing="10">
+                                <VerticalStackLayout Grid.Column="0" Spacing="5">
+                                    <Label Text="PARTENZA (A)" TextColor="White" HorizontalOptions="Center" FontAttributes="Bold"/>
+                                    <Picker x:Name="PkGenderA" Title="M/F" TextColor="White" TitleColor="Gray" BackgroundColor="#2D2D2D" SelectedIndex="0">
+                                        <Picker.ItemsSource>
+                                            <x:Array Type="{x:Type x:String}">
+                                                <x:String>Maschio</x:String>
+                                                <x:String>Femmina</x:String>
+                                            </x:Array>
+                                        </Picker.ItemsSource>
+                                    </Picker>
+                                    <Picker x:Name="PkSizeA" Title="Misura" TextColor="White" TitleColor="Gray" BackgroundColor="#2D2D2D" SelectedIndex="1">
+                                        <Picker.ItemsSource>
+                                            <x:Array Type="{x:Type x:String}">
+                                                <x:String>1/8"</x:String>
+                                                <x:String>1/4"</x:String>
+                                                <x:String>3/8"</x:String>
+                                                <x:String>1/2"</x:String>
+                                                <x:String>3/4"</x:String>
+                                                <x:String>1"</x:String>
+                                            </x:Array>
+                                        </Picker.ItemsSource>
+                                    </Picker>
+                                    <Picker x:Name="PkTypeA" Title="Tipo" TextColor="White" TitleColor="Gray" BackgroundColor="#2D2D2D" SelectedIndex="0">
+                                        <Picker.ItemsSource>
+                                            <x:Array Type="{x:Type x:String}">
+                                                <x:String>GAS</x:String>
+                                                <x:String>NPT</x:String>
+                                                <x:String>Metrico</x:String>
+                                            </x:Array>
+                                        </Picker.ItemsSource>
+                                    </Picker>
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout Grid.Column="1" Spacing="5">
+                                    <Label Text="ARRIVO (B)" TextColor="White" HorizontalOptions="Center" FontAttributes="Bold"/>
+                                    <Picker x:Name="PkGenderB" Title="M/F" TextColor="White" TitleColor="Gray" BackgroundColor="#2D2D2D" SelectedIndex="1">
+                                        <Picker.ItemsSource>
+                                            <x:Array Type="{x:Type x:String}">
+                                                <x:String>Maschio</x:String>
+                                                <x:String>Femmina</x:String>
+                                            </x:Array>
+                                        </Picker.ItemsSource>
+                                    </Picker>
+                                    <Picker x:Name="PkSizeB" Title="Misura" TextColor="White" TitleColor="Gray" BackgroundColor="#2D2D2D" SelectedIndex="1">
+                                        <Picker.ItemsSource>
+                                            <x:Array Type="{x:Type x:String}">
+                                                <x:String>1/8"</x:String>
+                                                <x:String>1/4"</x:String>
+                                                <x:String>3/8"</x:String>
+                                                <x:String>1/2"</x:String>
+                                                <x:String>3/4"</x:String>
+                                                <x:String>1"</x:String>
+                                            </x:Array>
+                                        </Picker.ItemsSource>
+                                    </Picker>
+                                    <Picker x:Name="PkTypeB" Title="Tipo" TextColor="White" TitleColor="Gray" BackgroundColor="#2D2D2D" SelectedIndex="0">
+                                        <Picker.ItemsSource>
+                                            <x:Array Type="{x:Type x:String}">
+                                                <x:String>GAS</x:String>
+                                                <x:String>NPT</x:String>
+                                                <x:String>Metrico</x:String>
+                                            </x:Array>
+                                        </Picker.ItemsSource>
+                                    </Picker>
+                                </VerticalStackLayout>
+                            </Grid>
+
+                            <Button Text="CALCOLA" Clicked="BtnCalcolaRaccordo_Clicked" BackgroundColor="#FF9900" TextColor="Black" FontAttributes="Bold" Margin="0,10,0,0"/>
+                            <Label x:Name="LblRisultatoRaccordo" Text="" TextColor="#FF9900" FontSize="16" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+            </ScrollView>
+
+
+            <Grid RowDefinitions="Auto, Auto, *" RowSpacing="10" IsVisible="{Binding IsTableMode}">
+
+                <Grid Grid.Row="0" ColumnDefinitions="*,*,*" ColumnSpacing="8">
+                    <Button Grid.Column="0" Text="GAS" Command="{Binding LoadGasCommand}" BackgroundColor="#007ACC" TextColor="White" HeightRequest="50" FontAttributes="Bold"/>
+                    <Button Grid.Column="1" Text="NPT" Command="{Binding LoadNptCommand}" BackgroundColor="#D32F2F" TextColor="White" HeightRequest="50" FontAttributes="Bold"/>
+                    <Button Grid.Column="2" Text="JIC" Command="{Binding LoadJicCommand}" BackgroundColor="#9C27B0" TextColor="White" HeightRequest="50" FontAttributes="Bold"/>
                 </Grid>
 
-                <Label Text="{Binding CurrentStandardName}" TextColor="Gray" FontSize="12" HorizontalOptions="Center" Margin="0,5,0,0"/>
+                <Label Grid.Row="1" Text="{Binding CurrentStandardName}" TextColor="Gray" FontSize="12" HorizontalOptions="Center"/>
 
-            </VerticalStackLayout>
-        </CollectionView.Header>
+                <CollectionView Grid.Row="2" ItemsSource="{Binding FittingsList}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Fitting">
+                            <Border StrokeThickness="0" BackgroundColor="#1E1E1E" Margin="0,5" Padding="15">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="8"/>
+                                </Border.StrokeShape>
+                                <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto">
 
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="models:Fitting">
-                <Border StrokeThickness="0" BackgroundColor="#1E1E1E" Margin="15,5" Padding="15">
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="8"/>
-                    </Border.StrokeShape>
-                    <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto">
-                        <Label Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Text="{Binding Name}" FontSize="24" FontAttributes="Bold" TextColor="#FF9900" VerticalOptions="Center" Margin="0,0,15,0"/>
-                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding Type}" FontSize="12" TextColor="Gray" HorizontalOptions="End"/>
-                        <HorizontalStackLayout Grid.Row="1" Grid.Column="1" Spacing="10" HorizontalOptions="End">
-                            <Label Text="{Binding OuterDiameterMm, StringFormat='Ø {0} mm'}" TextColor="White" FontAttributes="Bold"/>
-                            <Label Text="|" TextColor="Gray"/>
-                            <Label Text="{Binding TPI, StringFormat='{0} TPI'}" TextColor="#AAAAAA"/>
-                        </HorizontalStackLayout>
-                    </Grid>
-                </Border>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
+                                    <Label Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" 
+                                           Text="{Binding Name}" 
+                                           FontSize="20" FontAttributes="Bold" 
+                                           TextColor="{Binding Source={RelativeSource AncestorType={x:Type viewModels:FittingsViewModel}}, Path=StandardColor}" 
+                                           VerticalOptions="Center" Margin="0,0,15,0"/>
 
-        
+                                    <Label Grid.Row="0" Grid.Column="1" Text="{Binding Type}" FontSize="12" TextColor="Gray" HorizontalOptions="End"/>
+                                    <HorizontalStackLayout Grid.Row="1" Grid.Column="1" Spacing="10" HorizontalOptions="End">
+                                        <Label Text="{Binding OuterDiameterMm, StringFormat='Ø {0} mm'}" TextColor="White" FontAttributes="Bold"/>
+                                        <Label Text="|" TextColor="Gray"/>
+                                        <Label Text="{Binding TPI, StringFormat='{0} TPI'}" TextColor="#AAAAAA"/>
+                                    </HorizontalStackLayout>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
 
-    </CollectionView>
+        </Grid>
+    </Grid>
 </ContentPage>

@@ -4,7 +4,8 @@
     public enum FittingStandard
     {
         GasBSP, // Europa (Filetto cilindrico, tenuta su guarnizione)
-        NPT     // USA (Filetto conico, tenuta sul filetto)
+        NPT, // USA (Filetto conico, tenuta sul filetto)
+        JIC 
     }
 
     public class Fitting

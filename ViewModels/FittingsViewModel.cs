@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using MechTools.Models;
 using MechTools.Services;
+using Microsoft.Maui.Controls;
 using System.Collections.ObjectModel;
 using System.Globalization;
 
@@ -29,10 +30,52 @@ namespace MechTools.ViewModels
         [ObservableProperty]
         private string detectorResult;
 
+        // --- COLORE DINAMICO (Per UI) ---
+        [ObservableProperty]
+        private Color standardColor; // Questo genera automaticamente "StandardColor" pubblico
+
+        // --- GESTIONE VISIBILITÀ (MODALITÀ OFFICINA) ---
+
+        [ObservableProperty]
+        private bool isCalculatorMode = true; // Parte con i calcolatori visibili
+
+        [ObservableProperty]
+        private bool isTableMode = false;     // Tabelle nascoste all'inizio
+
+        [ObservableProperty]
+        private Color calcBtnColor = Colors.Orange; // Colore tasto attivo
+
+        [ObservableProperty]
+        private Color tableBtnColor = Colors.Transparent; // Colore tasto inattivo
+
+        // --- COMANDI PER LO SWITCH ---
+
+        [RelayCommand]
+        void ShowCalculators()
+        {
+            IsCalculatorMode = true;
+            IsTableMode = false;
+
+            // Feedback visivo sui bottoni
+            CalcBtnColor = Colors.Orange;
+            TableBtnColor = Colors.Transparent;
+        }
+
+        [RelayCommand]
+        void ShowTables()
+        {
+            IsCalculatorMode = false;
+            IsTableMode = true;
+
+            // Feedback visivo sui bottoni
+            CalcBtnColor = Colors.Transparent;
+            TableBtnColor = Colors.Orange;
+        }
+
         public FittingsViewModel()
         {
             // Inizializziamo la lista vuota
-            FittingsList = new ObservableCollection<Fitting>();
+            FittingsList = [];
 
             // Appena apriamo la pagina, carichiamo i GAS per default
             LoadGas();
@@ -50,6 +93,7 @@ namespace MechTools.ViewModels
             FittingsList = new ObservableCollection<Fitting>(data);
 
             CurrentStandardName = "Standard: GAS BSP (Europa - Cilindrico)";
+            StandardColor = Color.Parse("#007ACC"); // Blu
         }
 
         [RelayCommand]
@@ -62,6 +106,18 @@ namespace MechTools.ViewModels
             FittingsList = new ObservableCollection<Fitting>(data);
 
             CurrentStandardName = "Standard: NPT (USA - Conico)";
+            StandardColor = Color.Parse("#D32F2F"); // Rosso
+        }
+
+        [RelayCommand]
+        void LoadJic()
+        {
+            // Chiama il Service (Ora funziona perché JIC è nel Service!)
+            var data = FittingService.GetFittingsByType(FittingStandard.JIC);
+            FittingsList = new ObservableCollection<Fitting>(data);
+
+            CurrentStandardName = "Standard: JIC 37° (SAE J514) - USA Oleodinamica";
+            StandardColor = Color.Parse("#9C27B0"); // Viola
         }
 
         [RelayCommand]
