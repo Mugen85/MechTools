@@ -57,6 +57,14 @@ Questo repository serve come dimostrazione di competenza nello sviluppo full-sta
 
 ## 🚀 Installazione
 
+## 🚀 Installazione
+
+### Per Utenti (Android)
+Scarica il file APK direttamente sul tuo smartphone dal link seguente:
+👉 [MechTools v1.4 APK](https://github.com/Mugen85/MechTools/releases/download/v1.4.0/MechTools_v1.4.apk)
+
+
+### Per sviluppatori
 ```bash
 # Clona il repository
 git clone https://github.com/tuousername/mechtools.git
