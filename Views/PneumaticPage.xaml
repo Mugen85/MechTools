@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MechTools.Views.PneumaticPage"
+             Title="Pneumatica"
+             BackgroundColor="#121212">
+
+    <Grid RowDefinitions="Auto, *">
+
+        <VerticalStackLayout Grid.Row="0" Padding="15" BackgroundColor="#1E1E1E" ZIndex="10">
+            <Label Text="Tabellone Pneumatica (ISO 1219)" TextColor="White" FontSize="18" FontAttributes="Bold"/>
+            <Label x:Name="StatusLabel" Text="Caricamento motore grafico..." TextColor="#FF9900" FontSize="12"/>
+            <BoxView HeightRequest="2" Color="#FF9900" Margin="0,10,0,0"/>
+        </VerticalStackLayout>
+
+        <!-- Aggiunto HandlerChanged per sbloccare le impostazioni native di Android -->
+        <WebView Grid.Row="1" x:Name="PosterWebView" BackgroundColor="#121212" HandlerChanged="OnWebViewHandlerChanged" />
+
+    </Grid>
+
+</ContentPage>

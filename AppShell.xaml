@@ -45,4 +45,11 @@
         <ShellContent ContentTemplate="{DataTemplate views:ConvertersPage}" Route="ConvertersPage" />
     </FlyoutItem>
 
+    <!-- NUOVA SEZIONE SIMBOLOGIA CON TOP TABS -->
+    <FlyoutItem Title="Simbologia Tecnica" Icon="appicon.png">
+        <!-- Inserendo due ShellContent nello stesso FlyoutItem, MAUI crea automaticamente le schede in ALTO -->
+        <ShellContent Title="Pneumatica" ContentTemplate="{DataTemplate views:PneumaticPage}" Route="PneumaticPage" />
+        <ShellContent Title="Elettrica" ContentTemplate="{DataTemplate views:ElectricalPage}" Route="ElectricalPage" />
+    </FlyoutItem>
+
 </Shell>
