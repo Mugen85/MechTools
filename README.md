@@ -171,6 +171,16 @@ Distribuito sotto licenza MIT. Vedi il file `LICENSE` per maggiori dettagli.
 
 ---
 
+## ☕ Supporta il progetto
+
+Se questo strumento ti è utile, puoi supportare lo sviluppo con una donazione volontaria:
+
+👉 [paypal.me/wildmak](https://paypal.me/wildmak)
+
+Qualsiasi contributo è apprezzato e aiuta a mantenere il progetto attivo!
+
+---
+
 ## 👤 Autore
 
 Progetto sviluppato e mantenuto da **Marco Morello**, sviluppatore .NET e appassionato di meccanica.
