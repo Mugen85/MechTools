@@ -1,53 +1,73 @@
-# 🔧 Mechtools v1.4 - Assistente digitale per officina
+# 🔧 MechTools v1.5.0 — Assistente digitale per officina
 
-Questa applicazione multipiattaforma è stata progettata per supportare montatori meccanici e manutentori nelle attività quotidiane di officina e cantiere. Il progetto nasce dalla volontà di unire l'esperienza pratica nel settore metalmeccanico con le competenze di sviluppo software, creando uno strumento che risolve problemi concreti in modo rapido e senza necessità di connessione internet. 📱⚙️
+Applicazione multipiattaforma progettata per supportare montatori meccanici e manutentori nelle attività quotidiane di officina e cantiere. Il progetto nasce dalla volontà di unire l'esperienza pratica nel settore metalmeccanico con le competenze di sviluppo software, creando uno strumento che risolve problemi concreti in modo rapido e senza necessità di connessione internet.
 
-## ⚙️ Funzionalità lato meccanico
+---
 
-L'applicazione è sviluppata seguendo le reali necessità operative di chi lavora sul campo.
+## ⚙️ Funzionalità
 
-### 💧 Database Raccordi & Workshop Mode (Novità v1.4)
-Nuova interfaccia a schede (**Strumenti** vs **Tabelle**) per ottimizzare lo spazio su schermo.
-* **Standard Supportati:** GAS (BSP - Blu), NPT (USA - Rosso) e **JIC 37°** (Oleodinamica - Viola).
-* **Riconoscimento Filettature:** Identifica il raccordo misurando punta e fondo col calibro.
-* **Trova Adattatore:** Calcolatore logico per individuare il raccordo di giunzione (Nipplo, Manicotto, Riduzione) dati due attacchi Maschio/Femmina.
+### 🗺️ Tabelloni simbologia *(novità v1.5.0)*
 
-### 🔦 Torcia & Utilità
-* **Torcia Integrata:** Pulsante rapido per illuminare zone di lavoro buie direttamente dall'app.
-* **Feedback Tattile:** Vibrazione alla pressione dei tasti per conferma operativa (utile con i guanti).
+Consultazione rapida di schemi complessi tramite "poster" digitali interattivi.
 
-### 🔩 Convertitore Vite-Chiave
+- **Pneumatica:** tabellone valvole e cilindri secondo standard ISO 1219.
+- **Elettrotecnica:** comparativa simboli IEC (Europa) vs NEMA (USA), fondamentale per macchinari d'importazione.
+- **Zoom nativo hardware:** esplorazione fluida a 60 FPS con pinch-to-zoom estremo (fino a 30x) e doppio tap, garantita dall'accelerazione GPU della WebView.
+
+### 💧 Database raccordi & Workshop Mode
+
+Interfaccia a schede (**Strumenti** vs **Tabelle**) per ottimizzare lo spazio su schermo.
+
+- **Standard supportati:** GAS (BSP — blu), NPT (USA — rosso) e JIC 37° (oleodinamica — viola).
+- **Riconoscimento filettature:** identifica il raccordo misurando punta e fondo col calibro.
+- **Trova adattatore:** calcolatore logico per individuare il raccordo di giunzione (nipplo, manicotto, riduzione) dati due attacchi maschio/femmina.
+
+### 🔦 Torcia & utilità
+
+- **Torcia integrata:** pulsante rapido per illuminare zone di lavoro buie direttamente dall'app.
+- **Feedback tattile:** vibrazione alla pressione dei tasti per conferma operativa (utile con i guanti).
+
+### 🔩 Convertitore vite-chiave
+
 Permette di individuare immediatamente la chiave fissa o la brugola necessaria partendo dalla misura della vite e viceversa. Supporta lo standard ISO e gestisce le eccezioni per le misure pesanti fino a M52.
 
-### 🔄 Convertitori Tecnici
-* **Pollici/Millimetri:** Conversione bidirezionale con supporto frazioni (es. "3/8").
-* **Pressione:** Convertitore istantaneo **Bar ↔ PSI**.
+### 🔄 Convertitori tecnici
 
-## 🏗️ Architettura Software
+- **Pollici/millimetri:** conversione bidirezionale con supporto frazioni (es. `3/8`).
+- **Pressione:** convertitore istantaneo Bar ↔ PSI.
 
-Dal punto di vista tecnico, il progetto è realizzato per dimostrare una gestione pulita del codice e l'utilizzo dei più recenti standard di sviluppo Microsoft.
+---
+
+## 🏗️ Architettura software
 
 ### 🎯 Framework
-Sviluppato in C# su piattaforma **.NET MAUI 9** per garantire la compatibilità nativa su Android e iOS con un'unica base di codice.
+
+Sviluppato in C# su piattaforma **.NET MAUI 9** per garantire la compatibilità nativa su Android (ed espandibile su iOS) con un'unica base di codice.
 
 ### 🎨 Pattern MVVM
+
 L'architettura segue rigorosamente il pattern **Model-View-ViewModel** per separare la logica di business dall'interfaccia utente.
-* **Views:** XAML puro con Binding.
-* **ViewModels:** Logica di presentazione gestita tramite `CommunityToolkit.Mvvm`.
-* **Services:** Logica di calcolo (algoritmi di riconoscimento raccordi, tabelle dati statiche).
+
+- **Views:** XAML puro con binding.
+- **ViewModels:** logica di presentazione gestita tramite `CommunityToolkit.Mvvm`.
+- **Services:** logica di calcolo (algoritmi di riconoscimento raccordi, tabelle dati statiche).
+
+### 🚀 WebView rendering engine
+
+Per la gestione di immagini tecniche ad altissima risoluzione (tabelloni), i controlli nativi di MAUI sono stati bypassati in favore di un'architettura **WebView accelerata via hardware**. Il caricamento avviene offline convertendo asset `.png` locali in stringhe Base64, e configurando il WebKit di Android per supportare lo zoom fisico (`SupportZoom`, `WideViewPort`).
 
 ### 🛠️ Community Toolkit MVVM
+
 Utilizzo del toolkit ufficiale per la gestione ottimizzata di `ObservableProperty` e `RelayCommand`, riducendo il codice boilerplate e migliorando le performance.
 
-### ✨ Clean Code & Best Practices
-* Nessun dato *hardcoded* nelle viste.
-* Utilizzo di `Dependency Injection` (ove necessario).
-* Gestione asincrona dei comandi.
-* Struttura modulare scalabile (facile aggiunta di nuovi standard come ORFS o Metrico).
+### ✨ Clean code & best practices
 
-## 🎯 Obiettivi del Progetto
+- Nessun dato hardcoded nelle viste.
+- Dependency injection (ove necessario).
+- Gestione asincrona dei comandi e risorse (stream, Base64).
+- Struttura modulare scalabile.
 
-Questo repository serve come dimostrazione di competenza nello sviluppo full-stack mobile, evidenziando la capacità di trasformare un dominio di conoscenza specifico (la meccanica industriale) in una soluzione software strutturata e professionale.
+---
 
 ## 📋 Requisiti
 
@@ -55,103 +75,106 @@ Questo repository serve come dimostrazione di competenza nello sviluppo full-sta
 - Workload **.NET Multi-platform App UI** installato
 - Android SDK (API 33+)
 
-## 🚀 Installazione
+---
 
 ## 🚀 Installazione
 
-### Per Utenti (Android)
-Scarica il file APK direttamente sul tuo smartphone dal link seguente:
-👉 [MechTools v1.4 APK](https://github.com/Mugen85/MechTools/releases/download/v1.4.0/MechTools_v1.4.apk)
+### 📱 Per utenti (Android)
 
+Scarica il file APK direttamente sul tuo smartphone:
 
-### Per sviluppatori
+👉 [MechTools v1.5.0 APK](https://github.com/Mugen85/MechTools/releases/download/v1.5.0/MechTools-v1.5.0.apk)
+
+### 💻 Per sviluppatori
+
 ```bash
 # Clona il repository
-git clone https://github.com/tuousername/mechtools.git
+git clone https://github.com/Mugen85/MechTools.git
 
 # Apri la solution in Visual Studio
-cd mechtools
-start Mechtools.sln
+cd MechTools
+start MechTools.sln
 ```
 
-## 💻 Utilizzo
+---
 
-1. Seleziona l'emulatore Android o il dispositivo fisico (Debug USB attivo).
-2. Premi F5 per avviare l'applicazione.
-3. Usa la **Workshop Mode** nella pagina raccordi per switchare tra Calcolatori e Tabelle.
+## 💡 Utilizzo
 
-## 📁 Struttura del Progetto
+1. Seleziona l'emulatore Android o il dispositivo fisico (debug USB attivo).
+2. Premi `F5` per avviare l'applicazione.
+3. Esplora le macro-categorie dal menu laterale per accedere a strumenti, convertitori e tabelloni grafici.
+
+---
+
+## 📁 Struttura del progetto
 
 ```
-Mechtools/
-├── Models/                  # Definizioni degli oggetti (Dati)
-│   ├── Fitting.cs           # Modello Raccordi (Gas/NPT/JIC)
+MechTools/
+├── Models/                     # Definizioni degli oggetti (dati)
+│   ├── Fitting.cs              # Modello raccordi (GAS/NPT/JIC)
 │   └── ...
 │
-├── ViewModels/              # Logica di presentazione (MVVM)
-│   ├── MainViewModel.cs     # Dashboard
-│   ├── FittingsViewModel.cs # Logica Raccordi, JIC, Adattatori
+├── ViewModels/                 # Logica di presentazione (MVVM)
+│   ├── MainViewModel.cs        # Dashboard
+│   ├── FittingsViewModel.cs    # Logica raccordi, JIC, adattatori
 │   └── ...
 │
-├── Views/                   # Interfaccia Utente (XAML)
-│   ├── FittingsPage.xaml    # UI con Dual-Mode (Strumenti/Tabelle)
+├── Views/                      # Interfaccia utente (XAML)
+│   ├── FittingsPage.xaml       # UI dual-mode (Strumenti/Tabelle)
+│   ├── PneumaticPage.xaml      # Poster WebView con script Base64
 │   └── ...
 │
-├── Services/                # Logica di Business e Database statici
-│   ├── FittingService.cs    # Algoritmo Detector e Tabelle Dati
+├── Services/                   # Logica di business e database statici
+│   ├── FittingService.cs       # Algoritmo detector e tabelle dati
 │   └── ...
 │
-└── Resources/               # Asset Grafici
-    ├── AppIcon/             # Icone adattive
-    └── Splash/              # Splash Screen brandizzata
+└── Resources/                  # Asset grafici e dati grezzi
+    ├── AppIcon/                # Icone adattive
+    ├── Splash/                 # Splash screen
+    └── Raw/                    # Asset tecnici (poster in alta risoluzione)
 ```
 
-## 🗺️ Roadmap e Funzionalità
+---
 
-Il progetto è in continuo sviluppo. Ecco lo stato attuale dei lavori:
+## 🗺️ Roadmap
 
-* [x] **Core & UI**
-* [x] Setup architettura MVVM con .NET MAUI 9.
-* [x] Design System "Industrial" (Dark Mode, Contrasti elevati).
-* [x] Navigazione tramite AppShell.
+| Stato | Funzionalità |
+|-------|-------------|
+| ✅ | Setup architettura MVVM con .NET MAUI 9 |
+| ✅ | Design system "Industrial" (dark mode, contrasti elevati) |
+| ✅ | Navigazione tramite AppShell |
+| ✅ | Motore WebView per accelerazione hardware |
+| ✅ | Tabelloni ISO 1219 (pneumatica) e IEC/NEMA (elettrotecnica) |
+| ✅ | Zoom nativo Android |
+| ✅ | Database standard GAS, NPT e JIC 37° |
+| ✅ | UI Workshop Mode (Strumenti/Tabelle) |
+| ✅ | Smart Detector — algoritmo identificazione filetti |
+| ✅ | Adapter Finder — calcolatore nippli/riduzioni |
+| ✅ | Color coding (🔵🔴🟣) |
+| ✅ | Convertitori pollici/millimetri e Bar/PSI |
+| ✅ | Calcolo giri/min mandrino (RPM) |
+| ✅ | Tabella coppie di serraggio |
+| ✅ | Torcia integrata |
+| ✅ | Convertitore chiavi fisse ↔ diametro viti (metrico) |
 
-
-* [x] **Modulo Raccordi (Fittings)**
-* [x] Database Standard GAS, NPT e **JIC 37°**.
-* [x] **UI Workshop Mode:** Divisione Strumenti/Tabelle.
-* [x] *Smart Detector*: Algoritmo identificazione filetti.
-* [x] *Adapter Finder*: Calcolatore Nippli/Riduzioni.
-* [x] Color Coding (🔵🔴🟣).
-
-
-* [x] **Modulo Convertitori**
-* [x] Pollici/Millimetri.
-* [x] Pressione (Bar/PSI).
-
-
-* [x] **Modulo Officina**
-* [x] Torcia integrata.
-* [x] Calcolo Giri/min ().
-* [x] Tabelle Filettature e Serraggi.
+---
 
 ## 🤝 Contributi
 
 I contributi sono benvenuti! Sentiti libero di aprire issue o pull request per miglioramenti e nuove funzionalità.
 
+---
+
 ## 📄 Licenza
 
-Questo progetto è distribuito sotto licenza MIT. Vedi il file `LICENSE` per maggiori dettagli.
+Distribuito sotto licenza MIT. Vedi il file `LICENSE` per maggiori dettagli.
 
 ---
 
-## 👤 Autore e Contatti
+## 👤 Autore
 
-Questo progetto è sviluppato e mantenuto da **Marco Morello**, sviluppatore .NET e appassionato di meccanica.
+Progetto sviluppato e mantenuto da **Marco Morello**, sviluppatore .NET e appassionato di meccanica.
 
-* 💼 **LinkedIn:** [Marco Morello](https://www.linkedin.com/in/marco-morello-b43b2a108)
-* 📧 **Email:** [doppiam1@gmail.com](mailto:doppiam1@gmail.com)
-* 🌐 **Blog:** [Il Viaggio del Programmatore](https://www.ilviaggiodelprogrammatore.com)
-
----
-
-*Progetto Open Source distribuito con licenza MIT.*
+- 💼 [LinkedIn](https://www.linkedin.com/in/marco-morello-b43b2a108)
+- 📧 [doppiam1@gmail.com](mailto:doppiam1@gmail.com)
+- 🌐 [Il Viaggio del Programmatore](https://www.ilviaggiodelprogrammatore.com)
